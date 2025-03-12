@@ -10,5 +10,5 @@ This repository contains solutions and practice problems for the course "Master 
 - Focus on improving problem-solving skills and preparing for coding interviews.
 
 ## Technologies:
-- Python, JavaScript, Java, C++, or any language (custom implementations).
+- javaScript, TypeScript (custom implementations).
 - Leetcode-style problems and solutions.
