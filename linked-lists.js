@@ -76,6 +76,16 @@ class LinkedList {
       }
     }
   }
+
+  // 456 --> 16 --> 5 --> 10 --> 7 --> 1 --> 123
+  reverse() {
+    const reversedLinkedList = new LinkedList(this.tail.value);
+    for (let index = this.length - 1; index > 0; index--) {
+      this.remove(index);
+      reversedLinkedList.append(this.tail.value);
+    }
+    console.log('reversedLinkedList: ', reversedLinkedList);
+  }
 }
 
 const myLinkedList = new LinkedList(10);
@@ -88,4 +98,5 @@ console.log(myLinkedList);
 myLinkedList.insert(-2, 123);
 myLinkedList.insert(200, 456);
 myLinkedList.remove(3);
+myLinkedList.reverse();
 console.log(myLinkedList);
