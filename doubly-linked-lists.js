@@ -1,13 +1,13 @@
-// 10 --> 5 --> 16
-
 class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+    this.previous = null;
   }
 }
 
-class LinkedList {
+// 10 <--> 5 <--> 16
+class DoublyLinkedList {
   constructor(value) {
     this.head = new Node(value);
     this.tail = this.head;
@@ -16,6 +16,8 @@ class LinkedList {
 
   append(value) {
     const newNode = new Node(value);
+    newNode.next = null;
+    newNode.previous = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length = this.length + 1;
@@ -25,6 +27,7 @@ class LinkedList {
   prepend(value) {
     const newNode = new Node(value);
     newNode.next = this.head;
+    this.head.previous = newNode;
     this.head = newNode;
     this.length = this.length + 1;
   }
@@ -44,6 +47,7 @@ class LinkedList {
       if (counter === atIndex - 1) {
         const newNode = new Node(value);
         newNode.next = currentNode.next;
+        newNode.previous = currentNode.previous;
         currentNode.next = newNode;
         this.length = this.length + 1;
       } else {
@@ -60,6 +64,7 @@ class LinkedList {
     }
     if (atIndex === 0) {
       this.head = this.head.next;
+      this.head.previous = null;
       this.length = this.length - 1;
       return;
     }
@@ -67,6 +72,7 @@ class LinkedList {
     for (let counter = 0; counter < atIndex; counter++) {
       if (counter === atIndex - 1) {
         currentNode.next = currentNode.next.next;
+        currentNode.next.previous = currentNode;
         if (currentNode.next === null) {
           this.tail = currentNode;
         }
@@ -78,14 +84,14 @@ class LinkedList {
   }
 }
 
-const myLinkedList = new LinkedList(10);
-myLinkedList.append(5);
-myLinkedList.append(16);
-myLinkedList.prepend(7);
-myLinkedList.prepend(1);
-myLinkedList.insert(2, 99);
-console.log(myLinkedList);
-myLinkedList.insert(-2, 123);
-myLinkedList.insert(200, 456);
-myLinkedList.remove(3);
-console.log(myLinkedList);
+const myDoublyLinkedList = new DoublyLinkedList(10);
+myDoublyLinkedList.append(5);
+myDoublyLinkedList.append(16);
+myDoublyLinkedList.prepend(7);
+myDoublyLinkedList.prepend(1);
+myDoublyLinkedList.insert(2, 99);
+console.log(myDoublyLinkedList);
+myDoublyLinkedList.insert(-2, 123);
+myDoublyLinkedList.insert(200, 456);
+myDoublyLinkedList.remove(3);
+console.log(myDoublyLinkedList);
